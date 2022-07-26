@@ -9,12 +9,14 @@ body {
   width: 500px;
   height: 525px;
   z-index: 0;
+  background-size: cover;
 }
 .imagen-empleadores {
   background-image: url("https://imagenes.lainformacion.com/files/image_656_370/uploads/imagenes/2018/04/16/5ad4831c14289.jpeg");
   width: 500px;
   height: 525px;
   z-index: 0;
+  background-size: cover;
 }
 .texto-imagen {
   z-index: 1;
