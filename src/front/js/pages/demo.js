@@ -1,41 +1,46 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
-
-import { Context } from "../store/appContext";
+import "../../styles/demo.css";
 
 export const Demo = () => {
-	const { store, actions } = useContext(Context);
-
-	return (
-		<div className="container">
-			<ul className="list-group">
-				{store.demo.map((item, index) => {
-					return (
-						<li
-							key={index}
-							className="list-group-item d-flex justify-content-between"
-							style={{ background: item.background }}>
-							<Link to={"/single/" + index}>
-								<span>Link to: {item.title}</span>
-							</Link>
-							{// Conditional render example
-							// Check to see if the background is orange, if so, display the message
-							item.background === "orange" ? (
-								<p style={{ color: item.initial }}>
-									Check store/flux.js scroll to the actions to see the code
-								</p>
-							) : null}
-							<button className="btn btn-success" onClick={() => actions.changeColor(index, "orange")}>
-								Change Color
-							</button>
-						</li>
-					);
-				})}
-			</ul>
-			<br />
-			<Link to="/">
-				<button className="btn btn-primary">Back home</button>
-			</Link>
-		</div>
-	);
+  return (
+    <div className="row">
+      <div className="col-12 col-md-4 my-5 mx-auto">
+        <div className="container">
+          <div className="col-2">
+            <Link to="/">
+              <h1 className="text-dark">Worky</h1>
+            </Link>
+          </div>
+        </div>
+        <div className="container border mt-2">
+          <h3>Iniciar sesión</h3>
+          <div className="mb-3">
+            <label for="staticEmail">Email</label>
+            <div>
+              <input
+                type="text"
+                readonly
+                className="form-control"
+                id="inputEmail"
+              />
+            </div>
+          </div>
+          <div className="mb-3">
+            <label for="inputPassword">Contraseña</label>
+            <div>
+              <input
+                type="password"
+                className="form-control"
+                id="inputPassword"
+              />
+            </div>
+          </div>
+          <button type="button" className="btn btn-primary mb-2">
+            Entrar
+          </button>
+        </div>
+      </div>
+    </div>
+  );
 };
