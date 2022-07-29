@@ -1,8 +1,8 @@
 body {
-  background-color: #ffff;
+  background-image: url("https://images.unsplash.com/photo-1556761175-4b46a572b786?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8ZmlybWF8ZW58MHx8MHx8&w=1000&q=80");
+  background-size: cover;
 }
 .navbar {
-  background-color: #40cfff;
 }
 .imagen-trabajadores {
   background-image: url("https://images.unsplash.com/photo-1518473537958-1d1b23cac484?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80");
@@ -20,4 +20,7 @@ body {
 }
 .texto-imagen {
   z-index: 1;
+}
+.texto-explicativo {
+  background-image: url("https://static.vecteezy.com/system/resources/previews/000/951/778/non_2x/old-paper-background-with-space-for-text-or-image-photo.jpg");
 }

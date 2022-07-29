@@ -19,7 +19,7 @@ export const Home = () => {
           </div>
         </div>
       </div>
-      <div className="mx-5 my-5">
+      <div className="texto-explicativo mx-5 my-5 p-4">
         <h2>
           <strong>¿Que es worky?</strong>
         </h2>

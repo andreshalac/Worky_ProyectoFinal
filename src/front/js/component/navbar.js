@@ -4,7 +4,7 @@ import "../../styles/home.css";
 
 export const Navbar = () => {
   return (
-    <nav className="navbar fixed-top">
+    <nav className="navbar fixed-top bg-light">
       <div className="container-fluid">
         <h1 className="navbar-brand ms-5">Worky</h1>
         <div className="d-flex">
