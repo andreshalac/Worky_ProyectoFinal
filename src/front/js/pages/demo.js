@@ -8,13 +8,13 @@ export const Demo = () => {
       <div className="col-12 col-md-4 my-5 mx-auto">
         <div className="container">
           <div className="col-2">
-            <Link to="/">
+            <Link className="link-home" to="/">
               <h1 className="text-dark">Worky</h1>
             </Link>
           </div>
         </div>
-        <div className="container border mt-2">
-          <h3>Iniciar sesión</h3>
+        <div className="inicio-sesion container border mt-2">
+          <h3 className="ms-5 ps-5 my-3">Iniciar sesión</h3>
           <div className="mb-3">
             <label for="staticEmail">Email</label>
             <div>
@@ -36,7 +36,7 @@ export const Demo = () => {
               />
             </div>
           </div>
-          <button type="button" className="btn btn-primary mb-2">
+          <button type="button" className="boton-entrar btn btn-info mb-3">
             Entrar
           </button>
         </div>
