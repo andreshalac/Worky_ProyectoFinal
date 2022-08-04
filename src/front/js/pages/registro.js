@@ -1,10 +1,8 @@
-import React, { useState, useEffect, useContext } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
-import "../../styles/demo.css";
+import "../../styles/registro.css";
 
-export const Demo = () => {
-  const { store, actions } = useContext(Context);
-
+export const Registro = () => {
   return (
     <div className="row">
       <div className="col-12 col-md-4 my-5 mx-auto">
@@ -15,8 +13,8 @@ export const Demo = () => {
             </Link>
           </div>
         </div>
-        <div className="inicio-sesion container border mt-2">
-          <h3 className="ms-5 ps-5 my-3">Iniciar sesión</h3>
+        <div className="registro container border mt-2">
+          <h3 className="mx-auto my-3">Registro</h3>
           <div className="mb-3">
             <label for="staticEmail">Email</label>
             <div>
@@ -26,6 +24,12 @@ export const Demo = () => {
                 className="form-control"
                 id="inputEmail"
               />
+            </div>
+            <div className="mb-3 mt-3">
+              <label for="inputName">Nombre</label>
+              <div>
+                <input type="text" className="form-control" id="inputName" />
+              </div>
             </div>
           </div>
           <div className="mb-3">
@@ -39,7 +43,7 @@ export const Demo = () => {
             </div>
           </div>
           <button type="button" className="boton-entrar btn btn-info mb-3">
-            Entrar
+            Registrarse
           </button>
         </div>
       </div>
