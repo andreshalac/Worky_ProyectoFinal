@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import "../../styles/demo.css";
 
 export const Demo = () => {
+  const { store, actions } = useContext(Context);
+
   return (
     <div className="row">
       <div className="col-12 col-md-4 my-5 mx-auto">
