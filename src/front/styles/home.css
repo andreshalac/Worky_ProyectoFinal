@@ -16,7 +16,6 @@ body {
   background-size: cover;
 }
 .texto-imagen {
-  text-decoration: none;
   z-index: 1;
 }
 .boton-iniciar-sesion {
