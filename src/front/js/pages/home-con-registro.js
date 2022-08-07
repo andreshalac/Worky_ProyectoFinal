@@ -11,14 +11,18 @@ export const Homeconregistro = () => {
         </h4>
       </div>
       <div className="container d-flex mx-auto my-4 mt-5">
-        <div className="imagen-trabajadores me-5">
-          <div className="bg-white p-2 text-dark bg-opacity-50 text-center position-relative top-50 start-50 translate-middle">
-            <h1 className="texto-imagen py-2">Trabajadores</h1>
+        <div className="imagen-trabajadores text-dark me-5">
+          <div className="bg-white p-2 bg-opacity-50 text-center position-relative top-50 start-50 translate-middle">
+            <Link className="texto-imagen text-dark" to="/trabajadores">
+              <h1 className="texto-imagen py-2">Trabajadores</h1>
+            </Link>
           </div>
         </div>
         <div className="imagen-empleadores ms-5">
-          <div className="bg-white p-2 text-dark bg-opacity-50 text-center position-relative top-50 start-50 translate-middle">
-            <h1 className="texto-imagen py-2">Contratantes</h1>
+          <div className="bg-white p-2 bg-opacity-50 text-center position-relative top-50 start-50 translate-middle">
+            <Link className="texto-imagen text-dark" to="/empleo">
+              <h1 className="texto-imagen py-2">Contratantes</h1>
+            </Link>
           </div>
         </div>
       </div>
