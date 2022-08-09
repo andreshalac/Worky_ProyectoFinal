@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ScrollToTop from "./component/scrollToTop";
 
 import { Home } from "./pages/home";
-import { Demo } from "./pages/demo";
+import { Inicio_sesion } from "./pages/inicio-sesion";
 import { Single } from "./pages/single";
 import { Homeconregistro } from "./pages/home-con-registro";
 import { Registro } from "./pages/registro";
@@ -26,7 +26,7 @@ const Layout = () => {
           <Navbar />
           <Routes>
             <Route element={<Home />} path="/" />
-            <Route element={<Demo />} path="/demo" />
+            <Route element={<Inicio_sesion />} path="/inicio-sesion" />
             <Route element={<Homeconregistro />} path="/home-con-registro" />
             <Route element={<Registro />} path="/registro" />
             <Route element={<Trabajadores />} path="/trabajadores" />

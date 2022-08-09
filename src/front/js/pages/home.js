@@ -12,7 +12,7 @@ export const Home = () => {
         <div className="container-fluid">
           <h1 className="navbar-brand ms-5">Worky</h1>
           <div className="d-flex">
-            <Link to="/demo">
+            <Link to="/inicio-sesion">
               <button
                 className="boton-iniciar-sesion btn btn-info me-3"
                 type="button"

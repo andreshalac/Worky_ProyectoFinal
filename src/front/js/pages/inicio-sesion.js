@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useContext } from "react";
+import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
 import "../../styles/demo.css";
 
-export const Demo = () => {
+export const Inicio_sesion = () => {
   const { store, actions } = useContext(Context);
 
   return (
