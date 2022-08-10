@@ -47,7 +47,7 @@ def handle_login():
 			)
 		else:
 			return jsonify({
-			"msg": "Not Found"
+			"msg": "invalid"
 		}), 404
 
 	else:
