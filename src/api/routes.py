@@ -14,12 +14,12 @@ from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_requir
 @api.route('/user', methods=['POST'])
 def handle_other_user():
 	body = request.json
-	
+	print(body)
 	if not body.get("email"):
 		return jsonify({
 			"msg": "something happened, try again"
 		}), 400		
-	user = User(email=body["email"], userName=body["userName"], password=body["password"])
+	user = User(email=body["email"], userName=body["userName"], password=body["password"], is_active=True)
 	try:
 		db.session.add(user)
 		db.session.commit()
