@@ -18,7 +18,7 @@ export const Crear_oferta = () => {
                 </label>
                 <div className="col-sm-10">
                   <input
-                    type="password"
+                    type="text"
                     className="form-control"
                     id="inputPassword"
                   />
@@ -30,7 +30,7 @@ export const Crear_oferta = () => {
                 </label>
                 <div className="col-sm-10">
                   <input
-                    type="password"
+                    type="text"
                     className="form-control"
                     id="inputPassword"
                   />
@@ -42,7 +42,7 @@ export const Crear_oferta = () => {
                 </label>
                 <div className="col-sm-10">
                   <input
-                    type="password"
+                    type="text"
                     className="form-control"
                     id="inputPassword"
                   />
@@ -54,7 +54,7 @@ export const Crear_oferta = () => {
                 </label>
                 <div className="col-sm-10">
                   <input
-                    type="password"
+                    type="text"
                     className="form-control"
                     id="inputPassword"
                   />
