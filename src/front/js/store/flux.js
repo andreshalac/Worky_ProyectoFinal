@@ -26,6 +26,28 @@ const getState = ({ getStore, getActions, setStore }) => {
         }
       },
 
+      crear_oferta: async (jobffer) => {
+        try {
+          // fetching data from the backend
+          const response = await fetch(
+            process.env.BACKEND_URL + "/api/JobOffer",
+            {
+              method: "POST",
+              body: JSON.stringify(joboffer),
+              headers: {
+                "Content-Type": "application/json",
+              },
+            }
+          );
+          if (!response.ok) {
+            return false;
+          }
+          const data = await response.json();
+          return data;
+        } catch (error) {
+          console.log("Error loading message from backend", error);
+        }
+      },
     },
   };
 };
