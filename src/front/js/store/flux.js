@@ -23,6 +23,20 @@ const getState = ({ getStore, getActions, setStore }) => {
           console.log("Error loading message from backend", error);
         }
       },
+      handleLogin: async (login) => {
+        const store = getStore();
+        const actions = getActions();
+        const response = await fetch(`${store.URL_BASE}/login`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(login),
+        });
+        const data = await response.json();
+        return data;
+      
+      },
     },
   };
 };
