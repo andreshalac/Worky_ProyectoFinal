@@ -26,6 +26,19 @@ const getState = ({ getStore, getActions, setStore }) => {
           console.log("Error loading message from backend", error);
         }
       },
+
+      reloadWindow: () => {
+        if (
+            sessionStorage.getItem("token") &&
+            localStorage.getItem("userInfo")
+        ) {
+            console.log("no");
+            setStore({
+                auth: true,
+                userInfo: JSON.parse(localStorage.getItem("userInfo")),
+            });
+        }
+    },
       // Fecth de Login
       login: async (email, password) => {
         const options = {
@@ -56,10 +69,11 @@ const getState = ({ getStore, getActions, setStore }) => {
           }
           const data = await resp.json();
           console.log(data);
+          sessionStorage.setItem("token", data.token);
 
           setStore({
             userInfo: data.user_info,
-           });
+          });
           const userInfoStrfy = JSON.stringify(getStore().userInfo);
           localStorage.setItem("userInfo", userInfoStrfy);
           // return true; // Devuelve true para que se ejecute la acción que llamamos en Login

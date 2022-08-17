@@ -25,6 +25,9 @@ export const Inicio_sesion = () => {
     }
   }, []);
   return (
+    {store.auth ? (
+      <Navigate to={"/"} />
+    ) : (
     <div className="row">
       <div className="col-12 col-md-4 my-5 mx-auto">
         <div className="container">
@@ -80,5 +83,7 @@ export const Inicio_sesion = () => {
         </div>
       </div>
     </div>
+    )}
+   
   );
 };
