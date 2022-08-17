@@ -1,3 +1,5 @@
+import { Crear_oferta } from "../pages/crear-oferta";
+
 const getState = ({ getStore, getActions, setStore }) => {
   return {
     store: {
@@ -5,6 +7,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       userInfo: {},
       auth: false,
       errorAuth: false,
+      crear_oferta: {},
     },
     actions: {
       registro: async (user) => {
@@ -26,7 +29,6 @@ const getState = ({ getStore, getActions, setStore }) => {
           console.log("Error loading message from backend", error);
         }
       },
-
       reloadWindow: () => {
         if (
             sessionStorage.getItem("token") &&
@@ -80,9 +82,40 @@ const getState = ({ getStore, getActions, setStore }) => {
         } catch (error) {
           console.log(error);
         }
-      },
-    },
-  };
+      }
+
+      
+/*
+      oferta: async (id, 
+      job,  
+      budget,
+      address, 
+      timeline  ) => {
+        try {
+          // fetching data from the backend
+          const response = await fetch(
+            process.env.BACKEND_URL + "/api/JobOffer",
+            {
+              method: "POST",
+              body: JSON.stringify(joboffer),
+              headers: {
+                "Content-Type": "application/json",
+              },
+            }
+          );
+          if (!response.ok) {
+            return false;
+          }
+          const data = await response.json();
+          return data;
+        }
+         catch (error) {
+          console.log("Error loading message from backend", error);
+         }
+    }
+  */
+}
+  }
 };
 
 export default getState;

@@ -56,5 +56,25 @@ def handle_login():
 		return jsonify({
 			"msg": "something happened, try again"
 		}), 400	
+#JobOffer 
+@api.route('/joboffer', methods=['POST'])
+def handle_other_joboffer():
+	body = request.json
+	print(body)
+	if not body.get("job"):
+		return jsonify({
+			"msg": "something happened, try again"
+		}), 400		
+	joboffer = JobOffer(job=body["job"], budget=body["budget"], address=body["address"], timeline=body["timeline"], contratante_id=1,  is_active=True)
+	try:
+		db.session.add(joboffer)
+		db.session.commit()
+		return jsonify(joboffer.serialize()), 201
+	
+	except Exception as error:
+		db.session.rollback()
+		return jsonify(error.args), 500
+
+		
 
 
