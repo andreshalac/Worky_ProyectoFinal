@@ -34,6 +34,8 @@ def handle_login():
 	email=request.json.get("email", None)
 	password=request.json.get("password", None)
 
+#OJO -> Cuando se hace login, se busca primero si existe el correo, si existe, entonces se verifica que los pass sean iguales
+
 	if email is not  None and password is not None:
 		user = User.query.filter_by(email=email, password=password).first()
 		if user is not None:
