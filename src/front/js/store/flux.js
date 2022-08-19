@@ -1,13 +1,12 @@
-import { Crear_oferta } from "../pages/crear-oferta";
-
 const getState = ({ getStore, getActions, setStore }) => {
   return {
     store: {
       registro: false,
-      userInfo: {},
+      email: {},
       auth: false,
       errorAuth: false,
       crear_oferta: {},
+      token: null,
     },
     actions: {
       registro: async (user) => {
@@ -30,17 +29,12 @@ const getState = ({ getStore, getActions, setStore }) => {
         }
       },
       reloadWindow: () => {
-        if (
-            sessionStorage.getItem("token") &&
-            localStorage.getItem("userInfo")
-        ) {
-            console.log("no");
-            setStore({
-                auth: true,
-                userInfo: JSON.parse(localStorage.getItem("userInfo")),
-            });
-        }
-    },
+        setStore({
+          auth: true,
+          userInfo: localStorage.getItem("email"),
+          token: sessionStorage.getItem("token"),
+        });
+      },
       // Fecth de Login
       login: async (email, password) => {
         const options = {
@@ -74,23 +68,21 @@ const getState = ({ getStore, getActions, setStore }) => {
           sessionStorage.setItem("token", data.token);
 
           setStore({
-            userInfo: data.user_info,
+            email: data.email,
+            token: data.token,
           });
-          const userInfoStrfy = JSON.stringify(getStore().userInfo);
-          localStorage.setItem("userInfo", userInfoStrfy);
+
+          localStorage.setItem("email", data.email);
+          return true;
           // return true; // Devuelve true para que se ejecute la acción que llamamos en Login
         } catch (error) {
           console.log(error);
+          return false;
         }
-      }
+      },
 
       
-/*
-      oferta: async (id, 
-      job,  
-      budget,
-      address, 
-      timeline  ) => {
+      oferta: async(joboffer) => {
         try {
           // fetching data from the backend
           const response = await fetch(
@@ -100,6 +92,7 @@ const getState = ({ getStore, getActions, setStore }) => {
               body: JSON.stringify(joboffer),
               headers: {
                 "Content-Type": "application/json",
+                "Authorization": `Bearer ${getStore().token}`
               },
             }
           );
@@ -113,9 +106,9 @@ const getState = ({ getStore, getActions, setStore }) => {
           console.log("Error loading message from backend", error);
          }
     }
-  */
-}
-  }
+  
+    },
+  };
 };
 
 export default getState;

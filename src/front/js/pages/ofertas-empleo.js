@@ -3,6 +3,18 @@ import "../../styles/ofertas-empleo.css";
 import { Link } from "react-router-dom";
 
 export const Ofertas_empleo = () => {
+  const handleChange = (event) => {
+    setData({ ...data, [event.target.name]: event.target.value });
+  };
+  const handleData = async (event) => {
+    event.preventDefault();
+    const response = await actions.registro(data);
+    if (response) {
+      navigate("/");
+    } else {
+      setError("datos incorrectos");
+    }
+  };
   return (
     <>
       <div className="row">

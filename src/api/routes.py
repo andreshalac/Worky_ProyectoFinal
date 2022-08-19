@@ -58,14 +58,16 @@ def handle_login():
 		}), 400	
 #JobOffer 
 @api.route('/joboffer', methods=['POST'])
+@jwt_required()
 def handle_other_joboffer():
+	user_id = get_jwt_identity()
 	body = request.json
 	print(body)
 	if not body.get("job"):
 		return jsonify({
 			"msg": "something happened, try again"
 		}), 400		
-	joboffer = JobOffer(job=body["job"], budget=body["budget"], address=body["address"], timeline=body["timeline"], contratante_id=1,  is_active=True)
+	joboffer = JobOffer(job=body["job"], budget=body["budget"], address=body["address"], timeline=body["timeline"], contratante_id= user_id,  is_active=True)
 	try:
 		db.session.add(joboffer)
 		db.session.commit()
