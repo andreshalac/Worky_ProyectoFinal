@@ -7,7 +7,8 @@ import { Inicio_sesion } from "./pages/inicio-sesion";
 import { Single } from "./pages/single";
 import { Homeconregistro } from "./pages/home-con-registro";
 import { Registro } from "./pages/registro";
-import { Trabajadores } from "./pages/trabajadores";
+import { RegistroEmpresas } from "./pages/registroEmpresas";
+
 import { Crear_oferta } from "./pages/crear-oferta";
 import { Ofertas_empleo } from "./pages/ofertas-empleo";
 import injectContext from "./store/appContext";
@@ -31,7 +32,7 @@ const Layout = () => {
             <Route element={<Inicio_sesion />} path="/inicio-sesion" />
             <Route element={<Homeconregistro />} path="/home-con-registro" />
             <Route element={<Registro />} path="/registro" />
-            <Route element={<Trabajadores />} path="/trabajadores" />
+            <Route element={<RegistroEmpresas />} path="/registroEmpresas" />
             <Route element={<Crear_oferta />} path="/crear-oferta" />
             <Route element={<Ofertas_empleo />} path="/ofertas-empleo" />
             <Route element={<Single />} path="/single/:theid" />

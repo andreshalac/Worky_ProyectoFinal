@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Context } from "../store/appContext";
-import { Link, Navigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../../styles/demo.css";
 
 export const Inicio_sesion = () => {
@@ -8,26 +8,27 @@ export const Inicio_sesion = () => {
   /* Utilizo useState donde asigno valores de los input*/
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
   /* Compruebo que los campos no se encuentren vacios, si estan completos, mando datos a metodo login en flux
     si no es asi salta un alert que indica al usuario que debe rellenar los campos del formulario login */
   const handleSubmit = (e) => {
     e.preventDefault();
     if (email !== "" && password !== "") {
-      actions.login(email, password);
+      const results = actions.login(email, password);
+      if (results) {
+        navigate("/");
+      }
     } else {
       notify("Completa todos los campos");
     }
   };
   // Cuando los datos mandados al backend son erróneos invocamos alert
   useEffect(() => {
-    if (store.errorAuth) {
-      notify("Datos Erroneos");
+    if (store.token) {
+      navigate("/"); //mandar a ofertas de empleo cuando este listo
     }
   }, []);
   return (
-    {store.auth ? (
-      <Navigate to={"/"} />
-    ) : (
     <div className="row">
       <div className="col-12 col-md-4 my-5 mx-auto">
         <div className="container">
@@ -51,8 +52,7 @@ export const Inicio_sesion = () => {
                   onChange={(e) => setEmail(e.target.value)}
                   value={email}
                   name="email"
-                />{" "}
-                {""}
+                />
               </div>
             </div>
             <div className="mb-3">
@@ -68,8 +68,7 @@ export const Inicio_sesion = () => {
                   } /** Asigno el valor con onChange a la variable password */
                   value={password}
                   name="password"
-                />{" "}
-                {""}
+                />
               </div>
             </div>
             <input
@@ -78,12 +77,9 @@ export const Inicio_sesion = () => {
               name="submit"
               value="Entrar"
             />
-          </form>{" "}
-          {""}
+          </form>
         </div>
       </div>
     </div>
-    )}
-   
   );
 };
