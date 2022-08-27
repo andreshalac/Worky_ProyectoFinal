@@ -5,7 +5,6 @@ db = SQLAlchemy()
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    userName = db.Column(db.String(120), unique=True, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
     password = db.Column(db.String(80), unique=False, nullable=False)
     is_active = db.Column(db.Boolean(), unique=False, nullable=False)
@@ -19,7 +18,6 @@ class User(db.Model):
     def serialize(self):
         return {
             "email": self.email,
-            "userName": self.userName
             # do not serialize the password, its a security breach
         }
 
@@ -28,11 +26,11 @@ class Trabajadores (db.Model):
     name = db.Column(db.String(120), unique=True, nullable=False)
     address = db.Column(db.String(250))
     phone = db.Column(db.String(120))
-    job = db.Column(db.String(120), unique=False, nullable=False)
     #RecibeFK
     user_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)
     tipos_id = db.Column(db.Integer, db.ForeignKey("tipos.id"))
     tipos = db.relationship('Tipos', backref='trabajadores', lazy=True)
+    newdeal = db.relationship('NewDeal', backref='trabajador', lazy=True)
     #EnviaFK
     
     def __repr__(self):
@@ -79,6 +77,7 @@ class JobOffer(db.Model):
     timeline = db.Column(db.String(120))  
     #FK
     contratante_id = db.Column(db.Integer, db.ForeignKey("contratantes.id")) 
+    newdeal = db.relationship('NewDeal', backref='joboffer', lazy=True)
 
     def __repr__(self):
         return f'<JobOffer {self.id}>'
@@ -90,9 +89,8 @@ class JobOffer(db.Model):
             "budget": self.budget,
             "address": self.address,
             "timeline": self.timeline
-
-            # do not serialize the password, its a security breach
         }
+
 """este modelo es para el servicio que ofrece un usuario trabajador"""
 class ServicesOffer (db.Model):  
     id = db.Column(db.Integer, primary_key=True)
@@ -118,7 +116,6 @@ class ServicesOffer (db.Model):
             "timeline": self.timeline
             # do not serialize the password, its a security breach
         }
-"""este modelo es para el acuerdo cuando los usuarios matchean con alguna oferta o trabajador"""    
 
 class Tipos (db.Model): 
     id = db.Column(db.Integer, primary_key=True)
@@ -132,13 +129,14 @@ class Tipos (db.Model):
         return {
             "id": self.id,
             "name": self.name
-            # do not serialize the password, its a security breach
+            
         }
 
 class NewDeal (db.Model):  
+    id = db.Column(db.Integer, primary_key=True)
     trabajadores_id = db.Column(db.Integer, db.ForeignKey('trabajadores.id'))
     jobOffer_id = db.Column(db.Integer, db.ForeignKey('joboffer.id'))
-    status = db.Column(db.Integer, primary_key=True)
+    status = db.Column(db.String(50))
     date = db.Column(db.Date, default= datetime.date.today()) #para cuando se cree un registro, sea la fecha del momento, se crea automatico.
     #relacion para match
    
@@ -149,7 +147,6 @@ class NewDeal (db.Model):
         return {
             "trabajadores_id": self.trabajadores_id,
             "jobOffer_id": self.jobOffer_id
-            # do not serialize the password, its a security breach
         }
      
 

@@ -7,6 +7,8 @@ const getState = ({ getStore, getActions, setStore }) => {
       errorAuth: false,
       crear_oferta: {},
       token: null,
+      empleos: [],
+      trabajadores: [],
     },
     actions: {
       registro: async (user) => {
@@ -15,6 +17,24 @@ const getState = ({ getStore, getActions, setStore }) => {
           const response = await fetch(process.env.BACKEND_URL + "/api/user", {
             method: "POST",
             body: JSON.stringify(user),
+            headers: {
+              "Content-Type": "application/json",
+            },
+          });
+          if (!response.ok) {
+            return false;
+          }
+          const data = await response.json();
+          return data;
+        } catch (error) {
+          console.log("Error loading message from backend", error);
+        }
+      },
+      getTipos: async () => {
+        try {
+          // fetching data from the backend 4 registro tipos
+          const response = await fetch(process.env.BACKEND_URL + "/api/tipos", {
+            method: "GET",
             headers: {
               "Content-Type": "application/json",
             },
@@ -81,18 +101,17 @@ const getState = ({ getStore, getActions, setStore }) => {
         }
       },
 
-      
-      oferta: async(joboffer) => {
+      oferta: async (joboffer) => {
         try {
           // fetching data from the backend
           const response = await fetch(
-            process.env.BACKEND_URL + "/api/JobOffer",
+            process.env.BACKEND_URL + "/api/joboffer",
             {
               method: "POST",
               body: JSON.stringify(joboffer),
               headers: {
                 "Content-Type": "application/json",
-                "Authorization": `Bearer ${getStore().token}`
+                Authorization: `Bearer ${getStore().token}`,
               },
             }
           );
@@ -101,12 +120,38 @@ const getState = ({ getStore, getActions, setStore }) => {
           }
           const data = await response.json();
           return data;
-        }
-         catch (error) {
+        } catch (error) {
           console.log("Error loading message from backend", error);
-         }
-    }
-  
+        }
+      },
+      getEmpleos: () => {
+        fetch(process.env.BACKEND_URL + "/api/ofertastotal")
+          .then((data) => data.json())
+          .then((data) => setStore({ empleos: data }));
+      },
+      aplicarOfertas: async (joboffer_id) => {
+        try {
+          // fetching data from the backend
+          const response = await fetch(
+            process.env.BACKEND_URL + "/api/aplication",
+            {
+              method: "POST",
+              body: JSON.stringify({ job_id: joboffer_id }),
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${getStore().token}`,
+              },
+            }
+          );
+          if (!response.ok) {
+            return false;
+          }
+          const data = await response.json();
+          return data;
+        } catch (error) {
+          console.log("Error loading message from backend", error);
+        }
+      },
     },
   };
 };

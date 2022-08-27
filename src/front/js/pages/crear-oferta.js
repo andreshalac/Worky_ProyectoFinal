@@ -13,14 +13,13 @@ export const Crear_oferta = () => {
   };
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const response = await actions.registro(data);
+    const response = await actions.oferta(data);
     if (response) {
-      navigate("/trabajadores");
+      navigate("/vistatrabajadores");
     } else {
       setError("Datos incorrectos");
     }
   };
-
   return (
     <div className="row">
       <div className="col-6 col-md-12 mx-auto mt-5">
@@ -89,7 +88,7 @@ export const Crear_oferta = () => {
                   </div>
                 </div>
                 <button type="submit" className="btn btn-primary">
-                  Publicar oferta
+                  Publicar oferta de empleo
                 </button>
               </div>
             </div>
