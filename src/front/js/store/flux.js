@@ -1,54 +1,179 @@
 const getState = ({ getStore, getActions, setStore }) => {
-	return {
-		store: {
-			message: null,
-			demo: [
-				{
-					title: "FIRST",
-					background: "white",
-					initial: "white"
-				},
-				{
-					title: "SECOND",
-					background: "white",
-					initial: "white"
-				}
-			]
-		},
-		actions: {
-			// Use getActions to call a function within a fuction
-			exampleFunction: () => {
-				getActions().changeColor(0, "green");
-			},
+  return {
+    store: {
+      registro: false,
+      email: {},
+      auth: false,
+      errorAuth: false,
+      crear_oferta: {},
+      token: null,
+      empleos: [],
+      trabajadores: [],
+    },
+    actions: {
+      registro: async (user) => {
+        try {
+          // fetching data from the backend
+          const response = await fetch(process.env.BACKEND_URL + "/api/user", {
+            method: "POST",
+            body: JSON.stringify(user),
+            headers: {
+              "Content-Type": "application/json",
+            },
+          });
+          if (!response.ok) {
+            return false;
+          }
+          const data = await response.json();
+          return data;
+        } catch (error) {
+          console.log("Error loading message from backend", error);
+        }
+      },
+      getTipos: async () => {
+        try {
+          // fetching data from the backend 4 registro tipos
+          const response = await fetch(process.env.BACKEND_URL + "/api/tipos", {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          });
+          if (!response.ok) {
+            return false;
+          }
+          const data = await response.json();
+          return data;
+        } catch (error) {
+          console.log("Error loading message from backend", error);
+        }
+      },
+      reloadWindow: () => {
+        setStore({
+          auth: true,
+          userInfo: localStorage.getItem("email"),
+          token: sessionStorage.getItem("token"),
+        });
+      },
+      // Fecth de Login
+      login: async (email, password) => {
+        const options = {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email: email,
+            password: password,
+          }),
+        };
+        try {
+          const resp = await fetch(
+            process.env.BACKEND_URL + "/api/login",
+            options
+          );
+          if (resp.status === 200) {
+            console.log(resp.status);
+            setStore({
+              auth: true,
+            });
+          } else {
+            console.log(resp.status);
+            setStore({
+              errorAuth: true,
+            });
+          }
+          const data = await resp.json();
+          console.log(data);
+          sessionStorage.setItem("token", data.token);
 
-			getMessage: async () => {
-				try{
-					// fetching data from the backend
-					const resp = await fetch(process.env.BACKEND_URL + "/api/hello")
-					const data = await resp.json()
-					setStore({ message: data.message })
-					// don't forget to return something, that is how the async resolves
-					return data;
-				}catch(error){
-					console.log("Error loading message from backend", error)
-				}
-			},
-			changeColor: (index, color) => {
-				//get the store
-				const store = getStore();
+          setStore({
+            email: data.email,
+            token: data.token,
+          });
 
-				//we have to loop the entire demo array to look for the respective index
-				//and change its color
-				const demo = store.demo.map((elm, i) => {
-					if (i === index) elm.background = color;
-					return elm;
-				});
+          localStorage.setItem("email", data.email);
+          return true;
+          // return true; // Devuelve true para que se ejecute la acción que llamamos en Login
+        } catch (error) {
+          console.log(error);
+          return false;
+        }
+      },
 
-				//reset the global store
-				setStore({ demo: demo });
-			}
-		}
-	};
+      oferta: async (joboffer) => {
+        try {
+          // fetching data from the backend
+          const response = await fetch(
+            process.env.BACKEND_URL + "/api/joboffer",
+            {
+              method: "POST",
+              body: JSON.stringify(joboffer),
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${getStore().token}`,
+              },
+            }
+          );
+          if (!response.ok) {
+            return false;
+          }
+          const data = await response.json();
+          return data;
+        } catch (error) {
+          console.log("Error loading message from backend", error);
+        }
+      },
+      getEmpleos: () => {
+        fetch(process.env.BACKEND_URL + "/api/ofertastotal")
+          .then((data) => data.json())
+          .then((data) => setStore({ empleos: data }));
+      },
+      aplicarOfertas: async (joboffer_id) => {
+        try {
+          const response = await fetch(
+            process.env.BACKEND_URL + "/api/aplication",
+            {
+              method: "POST",
+              body: JSON.stringify({ job_id: joboffer_id }),
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${getStore().token}`,
+              },
+            }
+          );
+          if (!response.ok) {
+            return false;
+          }
+          const data = await response.json();
+          return data;
+        } catch (error) {
+          console.log("Error loading message from backend", error);
+        }
+      },
+      idOfertas: async (contratante_id) => {
+        try {
+          const response = await fetch(
+            process.env.BACKEND_URL + "/api/ofertasprivado",
+            {
+              body: JSON.stringify({ contratante_id: contratante_id }),
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${getStore().token}`,
+              },
+            }
+          );
+          if (!response.ok) {
+            return false;
+          }
+          const data = await response.json();
+          return data;
+        } catch (error) {
+          console.log("Error loading message from backend", error);
+        }
+      },
+    },
+  };
 };
 
 export default getState;
