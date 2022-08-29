@@ -117,7 +117,7 @@ def getofertasprivado():
 			"msg": "no existe este contratante"
 		}), 400		
 	ofertasprivado = JobOffer.query.filter_by(contratante_id=contratante.id)
-	data = [oferta.serialize() for oferta in ofertas]
+	data = [oferta.serialize() for oferta in ofertasprivado]
 	return jsonify(data)
 
 #El contratante puede ver cual trabajador está postulado

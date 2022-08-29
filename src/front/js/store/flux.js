@@ -131,12 +131,32 @@ const getState = ({ getStore, getActions, setStore }) => {
       },
       aplicarOfertas: async (joboffer_id) => {
         try {
-          // fetching data from the backend
           const response = await fetch(
             process.env.BACKEND_URL + "/api/aplication",
             {
               method: "POST",
               body: JSON.stringify({ job_id: joboffer_id }),
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${getStore().token}`,
+              },
+            }
+          );
+          if (!response.ok) {
+            return false;
+          }
+          const data = await response.json();
+          return data;
+        } catch (error) {
+          console.log("Error loading message from backend", error);
+        }
+      },
+      idOfertas: async (contratante_id) => {
+        try {
+          const response = await fetch(
+            process.env.BACKEND_URL + "/api/ofertasprivado",
+            {
+              body: JSON.stringify({ contratante_id: contratante_id }),
               headers: {
                 "Content-Type": "application/json",
                 Authorization: `Bearer ${getStore().token}`,

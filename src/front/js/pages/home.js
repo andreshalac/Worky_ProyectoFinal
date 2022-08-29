@@ -2,8 +2,7 @@ import React, { useContext, useEffect } from "react";
 import { Context } from "../store/appContext";
 import { Ofertas_empleo } from "../pages/ofertas-empleo";
 import "../../styles/home.css";
-
-import { Link } from "react-router-dom";
+import { Footer } from "../component/footer";
 
 export const Home = () => {
   const { store, actions } = useContext(Context);
@@ -15,12 +14,9 @@ export const Home = () => {
 
   return (
     <>
-      <div className="container d-flex mx-auto my-4 mt-5 pt-4">
+      <div className="container d-flex mx-auto maincontenedor mt-2">
         <Ofertas_empleo />
       </div>
-      <footer className="footer mt-auto py-3 text-center bg-dark text-white">
-        <p>worky</p>
-      </footer>
     </>
   );
 };

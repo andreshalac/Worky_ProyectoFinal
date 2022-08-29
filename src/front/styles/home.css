@@ -1,10 +1,114 @@
 body {
-  background-color: #7ac2fa;
+  background-color: #2388c2 !important;
 }
 
 .texto-imagen {
   z-index: 1;
 }
 .boton-iniciar-sesion {
-  background-color: #7ac2fa;
+  background-color: #2388c2;
+  color: #fff;
+}
+/* Navegacion */
+.navegacion {
+  background-color: black !important;
+}
+@media (max-width:540px) {
+  .interiornav {
+    display: flex !important;
+  }
+  .botoness {
+    display: flex !important;
+    justify-content: center !important;
+  }
+  .boton2 {
+    margin-right: 2px !important;
+  }
+  .logo {
+    margin-left: 2px !important;
+  }
+}
+@media (max-width:350px) {
+  .interiornav {
+    display: flex !important;
+    justify-content: center !important;
+  }
+  .botoness {
+    display: flex !important;
+    justify-content: center !important;
+  }
+  .boton2 {
+    margin: 0 !important;
+  }
+  .logo {
+    margin: 1 !important;
+  }
+  /* Main Contenedor */
+  .maincontenedor {
+    min-height: calc(100vh - 160px) !important;
+    margin-top: 8px !important;
+  }
+  /* Main Contenedor 2 */
+  .maincontenedor2 {
+    min-height: calc(100vh - 160px) !important;
+    margin-top: 8px !important;
+  }
+}
+.logo {
+  color: #2388c2;
+  font-weight: 800;
+}
+.logo:hover {
+  color: #2fb3ff;
+}
+.linkinicial {
+  text-decoration: none;
+}
+.linkinicial::after {
+  color: #2388c2;
+}
+.navlinks {
+  font-weight: 600;
+}
+.boton1 {
+  background-color: #2388c2;
+}
+.boton1:hover {
+  background-color: #2fb3ff;
+}
+.boton2:hover {
+  color: black;
+  background-color: #2ecd83;
+}
+/* Main Contenedor */
+.maincontenedor {
+  min-height: calc(100vh - 130px);
+  margin-top: 8px !important;
+}
+/* Main Contenedor 2 */
+.maincontenedor2 {
+  min-height: calc(100vh - 130px);
+  margin-top: 8px !important;
+}
+.textoo {
+  margin-top: 0.5rem !important;
+  margin-bottom: 0.5rem !important;
+  color: #2388c2 !important;
+  text-decoration: none;
+}
+.textoo:hover {
+  color: #2fb3ff;
+}
+/* Footer */
+.foooter {
+  background-color: black !important;
+  width: 100% !important;
+}
+/* Iniciar Sesion Boton Entrar */
+.entrarboton {
+  background-color: #2388c2 !important; 
+  color: white;
+}
+.entrarboton:hover {
+  background-color: #2fb3ff !important;
 }

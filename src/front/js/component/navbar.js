@@ -2,18 +2,24 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
 import "../../styles/home.css";
+import { Footer } from "./footer";
 
 export const Navbar = () => {
   const { store } = useContext(Context);
   return (
-    <nav className="navbar fixed-top bg-light">
-      <div className="container-fluid">
-        <h1 className="navbar-brand ms-5">Worky</h1>
-        <div className="d-flex">
+    <nav className="navbar bg-light navegacion">
+      <div className="container-fluid navegacion interiornav">
+        <Link
+          to="/"
+          className="linkinicial"
+          >
+            <h1 className="navbar-brand ms-5 mt-2 logo">Worky</h1>
+        </Link>
+        <div className="d-flex botoness">
           {!store.token ? (
             <Link
               to="/inicio-sesion"
-              className="boton-iniciar-sesion btn btn-info me-3"
+              className="boton-iniciar-sesion btn btn-info me-3 navlinks boton1"
             >
               Iniciar Sesión
             </Link>
@@ -21,14 +27,14 @@ export const Navbar = () => {
             ""
           )}
           {!store.token ? (
-            <Link to="/registro" className="btn btn-success me-5">
+            <Link to="/registro" className="btn btn-success me-5 navlinks boton2">
               Registrarse
             </Link>
           ) : (
             ""
           )}
           {store.token ? (
-            <Link to="/registro" className="btn btn-success me-5">
+            <Link to="/registro" className="btn btn-success me-5 navlinks boton2">
               Salir
             </Link>
           ) : (

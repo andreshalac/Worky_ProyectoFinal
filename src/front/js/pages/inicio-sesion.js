@@ -29,26 +29,19 @@ export const Inicio_sesion = () => {
     }
   }, []);
   return (
-    <div className="row">
-      <div className="col-12 col-md-4 my-5 mx-auto">
-        <div className="container">
-          <div className="col-2">
-            <Link className="link-home" to="/">
-              <h1 className="text-dark">Worky</h1>
-            </Link>
-          </div>
-        </div>
+    <div className="mx-auto mt-2 row maincontenedor2">
+      <div className="col-12 col-md-4 mx-auto">
         <div className="inicio-sesion container border mt-2">
           <form onSubmit={handleSubmit} className="login">
-            <h4 className="ms-5 ps-5 my-3">Iniciar sesión</h4>
+            <h4 className="text-center my-3 text-white">Iniciar sesión</h4>
             <div className="mb-3">
-              <label htmlFor="staticEmail">Email</label>
+              <label className="text-white" htmlFor="staticEmail">Email</label>
               <div>
                 <input
                   type="text"
                   className="form-control"
                   id="email"
-                  placeholder="Escribe tu email"
+                  placeholder="email@email.com"
                   onChange={(e) => setEmail(e.target.value)}
                   value={email}
                   name="email"
@@ -56,13 +49,13 @@ export const Inicio_sesion = () => {
               </div>
             </div>
             <div className="mb-3">
-              <label htmlFor="inputPassword">Contraseña</label>
+              <label className="text-white" htmlFor="inputPassword">Contraseña</label>
               <div>
                 <input
                   type="password"
                   className="form-control"
                   id="password"
-                  placeholder="password"
+                  placeholder="******"
                   onChange={(e) =>
                     setPassword(e.target.value)
                   } /** Asigno el valor con onChange a la variable password */
@@ -72,7 +65,7 @@ export const Inicio_sesion = () => {
               </div>
             </div>
             <input
-              className="boton-entrar btn btn-info mb-3"
+              className="boton-entrar btn btn-info mb-3 entrarboton"
               type="submit"
               name="submit"
               value="Entrar"
